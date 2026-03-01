@@ -3,6 +3,7 @@ package com.example.shop.users.entities;
 import com.example.shop.cart.entities.Cart;
 import com.example.shop.users.enums.UserType;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.UuidGenerator;
 
@@ -26,8 +27,8 @@ public class User implements Serializable {
     private String password;
     private UserType type = UserType.CLIENT;
 
-    @OneToOne
-    @JoinColumn(name = "cart_id")
+    @JsonIgnore
+    @OneToOne(mappedBy = "userId")
     private Cart cart;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")

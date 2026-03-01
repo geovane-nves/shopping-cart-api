@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
 import java.util.Objects;
@@ -17,9 +18,11 @@ public class Cart {
 
     @Id
     @UuidGenerator
+    @Column(name = "cart_id", nullable = false, unique = true)
     private UUID id;
 
-    @OneToOne(mappedBy = "cart", cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private User userId;
 
     @OneToMany(mappedBy = "cart")
@@ -48,6 +51,16 @@ public class Cart {
     public Instant getCreatedAt() {return createdAt;}
 
     public void setCreatedAt(Instant createdAt) {this.createdAt = createdAt;}
+
+
+    public BigDecimal getTotal(){
+        BigDecimal total = BigDecimal.ZERO;
+
+        for (CartItem item : cartItems){
+          total = total.add(item.subTotal());
+        }
+        return total;
+    }
 
     @Override
     public boolean equals(Object o) {

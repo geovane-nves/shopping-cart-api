@@ -36,25 +36,36 @@ public class TestConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        User user1 = new User(null, "Geovane", "geonevesrodrigues@gmail.com", "pasword123", null, null, Instant.now());
-        User user2 = new User(null, "SeiLa", "seila@gmail.com", "pasword123", null, null, Instant.now());
+        User user1 = new User(null, "Geovane", "geonevesrodrigues@gmail.com",
+                "password123", null, null, Instant.now());
+
+        User user2 = new User(null, "SeiLa", "seila@gmail.com",
+                "password123", null, null, Instant.now());
 
         userRepository.saveAll(Arrays.asList(user1, user2));
 
-        Cart cart1 = new Cart(null, null, Instant.now());
 
-        cartRepository.save(cart1);   // salva primeiro o cart
+// 🔹 Criando cart já ligado ao user (Cart é o dono)
+        Cart cart1 = new Cart(null, user1, Instant.now());
 
-        user1.setCart(cart1);         // conecta
+// importante manter os dois lados sincronizados
+        user1.setCart(cart1);
 
-        userRepository.save(user1);   // salva o user com FK preenchida
+        cartRepository.save(cart1);
 
-        Product p1 = new Product(null, "cartzinho", null, new BigDecimal("599.00"), 4, Instant.now());
+
+// 🔹 Produto
+        Product p1 = new Product(null, "cartzinho", null,
+                new BigDecimal("599.00"), 4, Instant.now());
 
         productRepository.save(p1);
 
+
+// 🔹 Item do carrinho
         CartItem i1 = new CartItem(null, p1, 2, null, cart1);
         cartItemRepository.save(i1);
+
+
 
         System.out.println("TEST CONFIG EXECUTOU");
     }

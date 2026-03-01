@@ -2,20 +2,18 @@ package com.example.shop.cart.services;
 
 import com.example.shop.cart.entities.Cart;
 import com.example.shop.cart.repositories.CartRepository;
-import com.example.shop.users.entities.User;
-import com.example.shop.users.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CartService {
 
-    private final CartRepository repository;
-    private final UserRepository userRepository;
+    @Autowired
+    private CartRepository cartRepository;
 
-    public CartService(CartRepository repository, UserRepository userRepository) {
-        this.repository = repository;
-        this.userRepository = userRepository;
+    public List<Cart> findAll(){
+        return cartRepository.findAll();
     }
-
-
 }

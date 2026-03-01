@@ -2,6 +2,7 @@ package com.example.shop.cartItem.entities;
 
 import com.example.shop.cart.entities.Cart;
 import com.example.shop.product.entities.Product;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.UuidGenerator;
 
@@ -21,22 +22,23 @@ public class CartItem {
     @JoinColumn(name = "product_id")
     private Product product;
 
+
     @ManyToOne
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
     private Integer quantity;
 
-    private Double priceAtMoment;
+    private BigDecimal priceAtMoment;
 
     public CartItem() {
     }
 
-    public CartItem(UUID id, Product product, Integer quantity, Double priceAtMoment, Cart cart) {
+    public CartItem(UUID id, Product product, Integer quantity, BigDecimal priceAtMoment, Cart cart) {
         this.id = id;
         this.product = product;
         this.quantity = quantity;
-        this.priceAtMoment = priceAtMoment;
+        this.priceAtMoment = product.getPrice();
         this.cart = cart;
     }
 
@@ -52,15 +54,16 @@ public class CartItem {
 
     public void setQuantity(Integer quantity) {this.quantity = quantity;}
 
-    public Double getPriceAtMoment() {return priceAtMoment;}
+    public BigDecimal getPriceAtMoment() {return priceAtMoment;}
 
-    public void setPriceAtMoment(double priceAtMoment) {this.priceAtMoment = priceAtMoment;}
+    public void setPriceAtMoment(BigDecimal priceAtMoment) {this.priceAtMoment = priceAtMoment;}
 
     public Cart getCart() {return cart;}
 
     public void setCart(Cart cart) {this.cart = cart;}
 
-    public Double subTotal(){
-        return quantity * priceAtMoment;
+    public BigDecimal subTotal(){
+        if (priceAtMoment == null) return BigDecimal.ZERO;
+        return priceAtMoment.multiply(BigDecimal.valueOf(quantity));
     }
 }

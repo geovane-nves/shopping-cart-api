@@ -2,6 +2,7 @@ package com.example.shop.product.entities;
 
 import com.example.shop.cartItem.entities.CartItem;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.UuidGenerator;
 
@@ -21,6 +22,7 @@ public class Product {
     private UUID id;
 
     @OneToMany(mappedBy = "product")
+    @JsonIgnore
     private List<CartItem> cartItems;
 
     private String name;
@@ -32,7 +34,7 @@ public class Product {
     private Integer strockQuantity;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-    private Instant creatAt;
+    private Instant createdAt;
 
     public Product() {
     }
@@ -43,7 +45,7 @@ public class Product {
         this.description = description;
         this.price = price;
         this.strockQuantity = strockQuantity;
-        this.creatAt = creatAt;
+        this.createdAt = creatAt;
     }
 
     public UUID getId() {return id;}
@@ -66,9 +68,9 @@ public class Product {
 
     public void setStrockQuantity(Integer strockQuantity) {this.strockQuantity = strockQuantity;}
 
-    public Instant getCreatAt() {return creatAt;}
+    public Instant getCreatedAt() {return createdAt;}
 
-    public void setCreatAt(Instant creatAt) {this.creatAt = creatAt;}
+    public void setCreatedAt(Instant createdAt) {this.createdAt = createdAt;}
 
     @Override
     public boolean equals(Object o) {
