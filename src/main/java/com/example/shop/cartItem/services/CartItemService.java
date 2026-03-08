@@ -35,13 +35,13 @@ public class CartItemService {
     }
 
     public void remove(UUID cartItemId){
-        if(!cartItemRepository.existsById(cartItemId)){ throw new RuntimeException("CartItem não encontrado"); }
+        if(!cartItemRepository.existsById(cartItemId)){ throw new RuntimeException("CartItem not found"); }
         cartItemRepository.deleteById(cartItemId);
     }
 
     public void removeOne(UUID cartItemId){
         CartItem item = cartItemRepository.findById(cartItemId)
-                .orElseThrow(() -> new RuntimeException("Item não encontrado"));
+                .orElseThrow(() -> new RuntimeException("Item not found"));
 
         if(item.getQuantity() > 1){
             item.setQuantity(item.getQuantity() - 1);

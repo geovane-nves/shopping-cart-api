@@ -25,7 +25,7 @@ public class Cart {
     @JoinColumn(name = "user_id")
     private User userId;
 
-    @OneToMany(mappedBy = "cart")
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartItem> cartItems;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
@@ -54,6 +54,7 @@ public class Cart {
 
     public List<CartItem> getCartItems() {return cartItems;}
 
+    public void clear() {this.cartItems.clear();}
 
 
     public BigDecimal getTotal(){

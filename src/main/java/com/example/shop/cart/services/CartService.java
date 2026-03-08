@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -38,7 +37,7 @@ public class CartService {
     public CartResponseDTO findById(UUID id){
         return cartRepository.findById(id)
                 .map(CartResponseDTO::new)
-                .orElseThrow(() -> new RuntimeException("Cart não encontrado"));
+                .orElseThrow(() -> new RuntimeException("Cart not found"));
     }
 
     public CartItemResponseDTO addProduct(UUID cartId, AddProductRequest request) {
@@ -53,7 +52,7 @@ public class CartService {
             return newItem;
         });
         int newQuantity = item.getQuantity() + request.quantity();
-        if (newQuantity > product.getStockQuantity()) {throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Quantidade maior que o estoque");}
+        if (newQuantity > product.getStockQuantity()) {throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Quantity greater than stock");}
 
         item.setQuantity(newQuantity);
         return new CartItemResponseDTO(cartItemRepository.save(item));
