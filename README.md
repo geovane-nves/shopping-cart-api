@@ -27,12 +27,12 @@ A estrutura do sistema foi modelada utilizando UML, conforme o diagrama abaixo:
 
 ## 🔄 Fluxo do Sistema
 
-1️⃣ Usuário é criado
-2️⃣ Usuário possui um Cart
-3️⃣ Produtos são adicionados ao CartItem
-4️⃣ O Cart calcula o valor total
-5️⃣ O usuário finaliza a compra
-6️⃣ Um Order é criado com os dados do carrinho
+- 1️⃣ Usuário é criado
+- 2️⃣ Usuário possui um Cart
+- 3️⃣ Produtos são adicionados ao CartItem
+- 4️⃣ O Cart calcula o valor total
+- 5️⃣ O usuário finaliza a compra
+- 6️⃣ Um Order é criado com os dados do carrinho
 
 ## 🧮 Regras de Negócio
 
