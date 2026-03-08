@@ -45,25 +45,25 @@ Um pedido pode mudar de status conforme o fluxo de pagamento.
 
 O sistema foi modelado conforme o seguinte diagrama:
 
-User → Cart (1:1)
-Cart → CartItem (1:N)
-Product → CartItem (1:N)
-User → Order (1:N)
+- User → Cart (1:1)
+- Cart → CartItem (1:N)
+- Product → CartItem (1:N)
+- User → Order (1:N)
 
 ## 🚀 Possíveis Melhorias
 
-Implementar pagamento integrado
-Implementar promoções / cupons
-Criar sistema de categorias de produtos
-Implementar cache de produtos
-Adicionar autenticação JWT
+- Implementar pagamento integrado
+- Implementar promoções / cupons
+- Criar sistema de categorias de produtos
+- Implementar cache de produtos
+- Adicionar autenticação JWT
 
 
 ## 📚 Objetivo do Projeto
 
 Este projeto foi desenvolvido com foco em:
 
-Prática de modelagem de domínio
-Estruturação de APIs REST
-Implementação de regras de negócio de e-commerce
-Prática de arquitetura backend.
+- Prática de modelagem de domínio
+- Estruturação de APIs REST
+- Implementação de regras de negócio de e-commerce
+- Prática de arquitetura backend.
