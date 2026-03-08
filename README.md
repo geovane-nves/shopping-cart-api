@@ -22,7 +22,7 @@ O sistema foi projetado seguindo princípios de modelagem orientada a domínio (
 
 A estrutura do sistema foi modelada utilizando UML, conforme o diagrama abaixo:
 
-<img width="4108" height="4180" alt="image" src="https://github.com/user-attachments/assets/c5d1b102-49d8-4483-acc4-031c535fbdb0" />
+<img width="2108" height="2180" alt="image" src="https://github.com/user-attachments/assets/c5d1b102-49d8-4483-acc4-031c535fbdb0" />
 
 
 ## 🔄 Fluxo do Sistema
