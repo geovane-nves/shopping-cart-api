@@ -2,14 +2,12 @@ package com.example.shop.product.controller;
 
 import com.example.shop.product.entities.Product;
 import com.example.shop.product.services.ProductService;
-import com.example.shop.users.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,7 +17,6 @@ public class ProductController {
 
     @Autowired
     private ProductService service;
-
 
     @GetMapping
     public ResponseEntity<List<Product>> findAll(){
@@ -31,5 +28,18 @@ public class ProductController {
     public ResponseEntity<Product> findById(@PathVariable UUID id){
         Product obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
+    }
+
+    @PostMapping
+    public ResponseEntity<Product> insert(@RequestBody Product obj){
+        obj = service.insert(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+        return ResponseEntity.created(uri).body(obj);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable UUID id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

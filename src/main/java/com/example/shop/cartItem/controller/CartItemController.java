@@ -1,14 +1,13 @@
 package com.example.shop.cartItem.controller;
 
 
+import com.example.shop.cart.dtos.CartResponseDTO;
+import com.example.shop.cartItem.dtos.CartItemResponseDTO;
 import com.example.shop.cartItem.entities.CartItem;
 import com.example.shop.cartItem.services.CartItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -20,15 +19,26 @@ public class CartItemController {
     @Autowired
     private CartItemService service;
 
-    @GetMapping
-    public ResponseEntity<List<CartItem>> findAll(){
-        List<CartItem> list = service.findAll();
-        return ResponseEntity.ok().body(list);
+    @GetMapping("/cart/{cartId}")
+    public List<CartItemResponseDTO> getItems(@PathVariable UUID cartId){
+        return service.findByCart(cartId);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CartItem> findById(@PathVariable UUID id){
+    public ResponseEntity<CartItemResponseDTO> findById(@PathVariable UUID id){
         CartItem item = service.findById(id);
-        return ResponseEntity.ok().body(item);
+        return ResponseEntity.ok(new CartItemResponseDTO(item));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable UUID id){
+        service.remove(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/{id}/remove-one")
+    public ResponseEntity<Void> removeOne(@PathVariable UUID id){
+        service.removeOne(id);
+        return ResponseEntity.noContent().build();
     }
 }

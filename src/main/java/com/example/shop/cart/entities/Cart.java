@@ -52,6 +52,9 @@ public class Cart {
 
     public void setCreatedAt(Instant createdAt) {this.createdAt = createdAt;}
 
+    public List<CartItem> getCartItems() {return cartItems;}
+
+
 
     public BigDecimal getTotal(){
         BigDecimal total = BigDecimal.ZERO;

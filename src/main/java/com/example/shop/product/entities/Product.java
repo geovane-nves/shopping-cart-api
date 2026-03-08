@@ -31,7 +31,7 @@ public class Product {
 
     private BigDecimal price;
 
-    private Integer strockQuantity;
+    private Integer stockQuantity;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant createdAt;
@@ -44,8 +44,8 @@ public class Product {
         this.name = name;
         this.description = description;
         this.price = price;
-        this.strockQuantity = strockQuantity;
-        this.createdAt = creatAt;
+        this.stockQuantity = strockQuantity;
+        this.createdAt = Instant.now();
     }
 
     public UUID getId() {return id;}
@@ -64,13 +64,14 @@ public class Product {
 
     public void setPrice(BigDecimal price) {this.price = price;}
 
-    public Integer getStrockQuantity() {return strockQuantity;}
+    public Integer getStockQuantity() {return stockQuantity;}
 
-    public void setStrockQuantity(Integer strockQuantity) {this.strockQuantity = strockQuantity;}
+    public void setStockQuantity(Integer stockQuantity) {this.stockQuantity = stockQuantity;}
 
     public Instant getCreatedAt() {return createdAt;}
 
     public void setCreatedAt(Instant createdAt) {this.createdAt = createdAt;}
+
 
     @Override
     public boolean equals(Object o) {

@@ -15,7 +15,6 @@ import java.util.UUID;
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
-    private static final long serialVersionUID = 1L;
 
     @Id
     @UuidGenerator
@@ -32,7 +31,7 @@ public class User implements Serializable {
     private Cart cart;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-    private Instant cratedAt;
+    private Instant createdAt;
 
     public User() {
     }
@@ -44,7 +43,7 @@ public class User implements Serializable {
         this.password = password;
         this.type = UserType.CLIENT;
         this.cart = cart;
-        this.cratedAt = Instant.now();
+        this.createdAt = Instant.now();
     }
 
     public UUID getId() {return id;}
@@ -63,13 +62,15 @@ public class User implements Serializable {
 
     public void setPassword(String password) {this.password = password;}
 
-    public Instant getCratedAt() {return cratedAt;}
+    public Instant getCreatedAt() {return createdAt;}
 
-    public void setCratedAt(Instant cratedAt) {this.cratedAt = cratedAt;}
+    public void setCreatedAt(Instant createdAt) {this.createdAt = createdAt;}
 
     public Cart getCart() {return cart;}
 
     public void setCart(Cart cart) {this.cart = cart;}
+
+    public UserType getType() {return type;}
 
     @Override
     public boolean equals(Object o) {
