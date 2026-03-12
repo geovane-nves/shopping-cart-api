@@ -1,69 +1,68 @@
 # 🛒 Cart & Order Management API
+🇺🇸 English | 🇧🇷 [Português](README.pt-BR.md)
 
-Sistema de gerenciamento de carrinho e pedidos desenvolvido para simular o funcionamento básico de um e-commerce backend.
+A cart and order management system designed to simulate the basic backend functionality of an e-commerce platform.
 
-O projeto permite que usuários adicionem produtos ao carrinho, gerenciem itens e realizem pedidos.
+The project allows users to add products to a cart, manage items, and place orders.
 
-O sistema foi projetado seguindo princípios de modelagem orientada a domínio (DDD) e boas práticas de APIs REST.
+The system was designed following Domain-Driven Design (DDD) principles and REST API best practices.
 
-## 📌 Funcionalidades
+## 📌 Features
 
-👤 Cadastro de usuários  
-🛍️ Gerenciamento de produtos  
-🛒 Criação e gerenciamento de carrinho  
-➕ Adição de produtos ao carrinho  
-🔢 Controle de quantidade de itens  
-💰 Cálculo automático do valor total do carrinho  
-📦 Criação de pedidos  
-📊 Controle de status do pedido  
-📉 Controle de estoque  
+👤 User registration  
+🛍️ Product management  
+🛒 Cart creation and management  
+➕ Add products to the cart  
+🔢 Item quantity control  
+💰 Automatic cart total calculation  
+📦 Order creation  
+📊 Order status tracking  
+📉 Stock management  
 
-## 🏗️ Modelagem do Sistema
+## 🏗️ System Modeling
 
-A estrutura do sistema foi modelada utilizando UML, conforme o diagrama abaixo:
+The system structure was modeled using UML, as shown in the diagram below:
 
 <img width="2108" height="2180" alt="image" src="https://github.com/user-attachments/assets/c5d1b102-49d8-4483-acc4-031c535fbdb0" />
 
+## 🔄 System Flow
 
-## 🔄 Fluxo do Sistema
+1️⃣ A user is created  
+2️⃣ The user owns a cart  
+3️⃣ Products are added as `CartItem`  
+4️⃣ The cart calculates the total value  
+5️⃣ The user completes the purchase  
+6️⃣ An order is created using the cart data  
 
-- 1️⃣ Usuário é criado
-- 2️⃣ Usuário possui um Cart
-- 3️⃣ Produtos são adicionados ao CartItem
-- 4️⃣ O Cart calcula o valor total
-- 5️⃣ O usuário finaliza a compra
-- 6️⃣ Um Order é criado com os dados do carrinho
+## 🧮 Business Rules
 
-## 🧮 Regras de Negócio
+- The product price is copied to `priceAtMoment` when the item is added to the cart.
+- The cart total is calculated as the sum of all item subtotals.
+- Product stock must be checked before adding an item to the cart.
+- An order status can change according to the payment flow.
 
-O preço do produto é copiado para priceAtMoment no momento da adição ao carrinho.
-O total do carrinho é calculado pela soma dos subtotais dos itens.
-O estoque do produto deve ser verificado antes de adicionar ao carrinho.
-Um pedido pode mudar de status conforme o fluxo de pagamento.
+## 📊 UML Diagram
 
-## 📊 Diagrama UML
+The system was modeled with the following relationships:
 
-O sistema foi modelado conforme o seguinte diagrama:
+- `User` → `Cart` (1:1)  
+- `Cart` → `CartItem` (1:N)  
+- `Product` → `CartItem` (1:N)  
+- `User` → `Order` (1:N)
 
-- User → Cart (1:1)
-- Cart → CartItem (1:N)
-- Product → CartItem (1:N)
-- User → Order (1:N)
+## 🚀 Possible Improvements
 
-## 🚀 Possíveis Melhorias
+- Implement payment integration
+- Add promotions / coupon system
+- Create product category management
+- Implement product caching
+- Add JWT authentication
 
-- Implementar pagamento integrado
-- Implementar promoções / cupons
-- Criar sistema de categorias de produtos
-- Implementar cache de produtos
-- Adicionar autenticação JWT
+## 📚 Project Purpose
 
+This project was developed with the goal of practicing:
 
-## 📚 Objetivo do Projeto
-
-Este projeto foi desenvolvido com foco em:
-
-- Prática de modelagem de domínio
-- Estruturação de APIs REST
-- Implementação de regras de negócio de e-commerce
-- Prática de arquitetura backend.
+- Domain modeling
+- REST API design
+- E-commerce business rule implementation
+- Backend architecture concepts
