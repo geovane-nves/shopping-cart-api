@@ -23,7 +23,7 @@ The system was designed following Domain-Driven Design (DDD) principles and REST
 
 The system structure was modeled using UML, as shown in the diagram below:
 
-<img width="2108" height="2180" alt="image" src="https://github.com/user-attachments/assets/c5d1b102-49d8-4483-acc4-031c535fbdb0" />
+<img width="708" height="1100" alt="image" src="https://github.com/user-attachments/assets/c5d1b102-49d8-4483-acc4-031c535fbdb0" />
 
 ## 🔄 System Flow
 
